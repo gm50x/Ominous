@@ -45,7 +45,7 @@
     margin-bottom: 24px;
 }
 
-.profile-container ul {
+.profile-container ul div{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;

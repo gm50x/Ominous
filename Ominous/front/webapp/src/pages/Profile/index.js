@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { FiPower, FiTrash2 } from 'react-icons/fi'
 import { Link, useHistory } from 'react-router-dom'
 
+// import {
+//     CSSTransition,
+//     SwitchTransition
+// } from 'react-transition-group';
+
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
 import './styles.css'
 
 import api from '../../services/api'
@@ -55,19 +62,27 @@ export default function Profile() {
             </header>
             <h1>Casos cadastrados</h1>
             <ul>
-                {incidents.map(incident => (
-                    <li key={incident.id}>
-                        <strong>CASO:</strong>
-                        <p>{incident.title}</p>
-                        <strong>DESCRIÇÃO</strong>
-                        <p>{incident.description}</p>
-                        <strong>VALOR</strong>
-                        <p>{Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(incident.value)}</p>
-                        <button type="button" onClick={() => handleDeleteIncident(incident.id)}>
-                            <FiTrash2 size={20} color="a8a8b3" />
-                        </button>
-                    </li>
-                ))}
+                <TransitionGroup>
+                    {incidents.map(incident => (
+                        // <SwitchTransition>
+                        //     <CSSTransition key={`incident-${incident.id}`} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)} classNames="fade">
+                        <CSSTransition key={`incident-${incident.id}`} timeout={300} classNames="item">
+                            <li key={incident.id}>
+                                <strong>CASO:</strong>
+                                <p>{incident.title}</p>
+                                <strong>DESCRIÇÃO</strong>
+                                <p>{incident.description}</p>
+                                <strong>VALOR</strong>
+                                <p>{Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(incident.value)}</p>
+                                <button type="button" onClick={() => handleDeleteIncident(incident.id)}>
+                                    <FiTrash2 size={20} color="a8a8b3" />
+                                </button>
+                            </li>
+                        </CSSTransition>
+                        //     </CSSTransition>
+                        // </SwitchTransition>
+                    ))}
+                </TransitionGroup>
             </ul>
         </div>
     )
