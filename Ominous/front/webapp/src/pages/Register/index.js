@@ -31,7 +31,7 @@ export default function Register() {
     }
 
     return (
-        <div className="register-container">
+        <div className="register-container page">
             <div className="content">
                 <section>
                     <img src={logoImg} alt="Be The Hero" />

@@ -27,7 +27,7 @@ export default function NewIncident() {
     }
 
     return (
-        <div className="new-incident-container">
+        <div className="new-incident-container page">
             <div className="content">
                 <section>
                     <img src={logoImg} alt="Be The Hero" />
